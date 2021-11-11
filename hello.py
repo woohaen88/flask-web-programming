@@ -1,15 +1,11 @@
-from flask import Flask
+from flask import Flask, request
 
 app = Flask(__name__)
 
-@app.route('/users/<username>')
-def get_user(username):
-    return username
+@app.route('/login', methods=['GET'])
+def login_page():
+    return show_the_login_form()
 
-@app.route('/posts/<int:post_id>')
-def get_post(post_id):
-    return str(post_id)
-
-@app.route('/uuid/<uuid:uuid>')
-def get_uuid(uuid):
-    return str(uuid)
+@app.route('/login', methods=['POST'])
+def login():
+    return do_the_login()
